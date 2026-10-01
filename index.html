@@ -1,0 +1,712 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Niladri Pal // AI/ML & Systems Engineer | 3D Interactive WebGL Portfolio</title>
+  <meta name="description" content="Official 3D Avatar Portfolio & Engineering Dossier of Niladri Pal - AI/ML Engineer, Full-Stack Data Solutions, and Automation & Cloud Systems." />
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>⚡</text></svg>" />
+  
+  <!-- Google Fonts: Space Grotesk, Inter, JetBrains Mono -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&family=Space+Grotesk:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <!-- Three.js CDN -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+
+  <!-- Custom Stylesheet -->
+  <link rel="stylesheet" href="style.css?v=2026.5" />
+</head>
+<body class="bg-[#080B11] text-slate-100 min-h-screen relative selection:bg-cyan-400 selection:text-slate-950">
+
+  <!-- Ambient Floating Aurora Orbs for Rich Graphical Atmosphere -->
+  <div class="ambient-aurora-container">
+    <div class="aurora-orb aurora-orb-1"></div>
+    <div class="aurora-orb aurora-orb-2"></div>
+    <div class="aurora-orb aurora-orb-3"></div>
+  </div>
+  <div class="vignette-overlay"></div>
+
+  <!-- Custom Minimalist Precision Cursor -->
+  <div class="custom-cursor-dot"></div>
+  <div class="custom-cursor-ring">
+    <span></span>
+  </div>
+
+  <!-- Ambient Subtle Cyber Grid -->
+  <div class="cyber-grid-overlay"></div>
+
+  <!-- Top Navigation Header with Minimalist Tab Bar -->
+  <header class="top-nav px-4 lg:px-8 py-3">
+    <div class="max-w-7xl mx-auto flex items-center justify-between gap-4">
+      
+      <!-- Brand Identity -->
+      <button class="flex items-center gap-3 group text-left cursor-pointer tab-nav-trigger" data-tab-target="home">
+        <div class="w-9 h-9 rounded-lg bg-gradient-to-b from-cyan-400/40 via-white/20 to-violet-500/20 p-[1px] border border-cyan-400/40 shadow-[0_0_15px_rgba(0,229,255,0.2)] group-hover:border-cyan-400 transition-all">
+          <div class="w-full h-full bg-[#0E1524] rounded-lg flex items-center justify-center font-display font-extrabold text-white text-sm tracking-wider">
+            NP
+          </div>
+        </div>
+        <div>
+          <span class="font-display font-bold text-white text-sm tracking-tight block">NILADRI PAL</span>
+          <span class="font-mono text-[9px] text-cyan-400 block tracking-widest uppercase">AI/ML ENGINEER // FULL-STACK SYSTEMS</span>
+        </div>
+      </button>
+
+      <!-- Desktop Minimalist Tab Bar -->
+      <nav id="desktop-tab-bar" class="hidden lg:flex items-center gap-1 p-1 rounded-lg bg-[#0E1524]/90 border border-white/10 shadow-lg">
+        <button class="tab-nav-btn active" data-tab-target="home">01. AVATAR CORE</button>
+        <button class="tab-nav-btn" data-tab-target="projects">02. WORK & CASE STUDIES</button>
+        <button class="tab-nav-btn" data-tab-target="skills">03. TECH ARSENAL</button>
+        <button class="tab-nav-btn" data-tab-target="experience">04. CAREER & EDU</button>
+        <button class="tab-nav-btn" data-tab-target="resume">05. VIEW PDF CV</button>
+        <button class="tab-nav-btn" data-tab-target="contact">06. CONTACT</button>
+      </nav>
+
+      <!-- Action Endpoints -->
+      <div class="flex items-center gap-3">
+        <!-- Sound FX & Voice Toggle -->
+        <button id="sound-fx-toggle" class="sound-toggle-btn inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg border border-cyan-400/30 bg-[#0E1524] text-[11px] font-mono text-slate-200 hover:border-cyan-400 transition-all shadow-[0_0_12px_rgba(0,229,255,0.15)]" title="Toggle Audio FX & Synthesized Voice" aria-label="Toggle Audio">
+          <span class="sound-beacon"></span>
+          <span class="material-symbols-outlined text-sm text-cyan-400">volume_up</span>
+          <span class="sound-status-text font-semibold">AUDIO: ON</span>
+        </button>
+
+        <!-- Direct Contact Trigger -->
+        <button class="btn-cyber-primary text-xs hidden sm:inline-flex tab-nav-trigger" data-tab-target="contact">
+          <span>CONTACT</span>
+          <span class="material-symbols-outlined text-xs">arrow_forward</span>
+        </button>
+
+        <!-- Mobile Menu Toggle Button -->
+        <button id="mobile-menu-toggle" class="lg:hidden p-2 text-slate-300 hover:text-white focus:outline-none" aria-label="Toggle Navigation">
+          <span class="material-symbols-outlined text-2xl">menu</span>
+        </button>
+      </div>
+
+    </div>
+
+    <!-- Mobile Navigation Drawer -->
+    <div id="mobile-menu" class="hidden lg:hidden pt-3 pb-2 border-t border-white/10 mt-2 font-mono text-xs flex flex-wrap gap-1.5">
+      <button class="tab-nav-btn w-full text-left active" data-tab-target="home">01. AVATAR CORE</button>
+      <button class="tab-nav-btn w-full text-left" data-tab-target="projects">02. WORK & CASE STUDIES</button>
+      <button class="tab-nav-btn w-full text-left" data-tab-target="skills">03. TECH ARSENAL</button>
+      <button class="tab-nav-btn w-full text-left" data-tab-target="experience">04. CAREER & EDU</button>
+      <button class="tab-nav-btn w-full text-left" data-tab-target="resume">05. VIEW PDF CV</button>
+      <button class="tab-nav-btn w-full text-left text-cyan-400" data-tab-target="contact">06. CONTACT ME →</button>
+
+      <!-- Mobile Sound Toggle Row -->
+      <div class="w-full pt-2.5 mt-1 border-t border-white/10 flex items-center justify-between px-2">
+        <span class="text-slate-400 text-[11px]">AUDIO FX & VOICE:</span>
+        <button id="mobile-sound-toggle" class="sound-toggle-btn inline-flex items-center gap-1.5 px-3 py-1 rounded bg-[#0E1524] border border-cyan-400/30 text-[11px] font-mono text-cyan-300">
+          <span class="sound-beacon"></span>
+          <span class="material-symbols-outlined text-sm text-cyan-400">volume_up</span>
+          <span class="sound-status-text">AUDIO: ON</span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Main Content Body With Tab Panes -->
+  <main class="relative z-10 pt-20 px-4 sm:px-6 lg:px-12 max-w-7xl mx-auto min-h-[calc(100vh-140px)]">
+
+    <!-- ======================================================== -->
+    <!-- TAB 1: 3D AVATAR CORE & HOLOGRAPHIC LANDING -->
+    <!-- ======================================================== -->
+    <section id="tab-home" class="tab-pane active py-8 lg:py-12">
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+        
+        <!-- Left Hero Identity & Positioning -->
+        <div class="lg:col-span-5 space-y-6">
+          <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-slate-900/80 border border-cyan-400/30 text-cyan-300 font-mono text-xs shadow-[0_0_15px_rgba(0,229,255,0.15)]">
+            <span class="status-beacon"></span>
+            <span>CYBERNETIC AVATAR // ACTIVE</span>
+          </div>
+
+          <h1 class="text-4xl sm:text-5xl lg:text-6xl font-extrabold font-display leading-[1.08] tracking-tight">
+            AI/ML Engineer & <span class="text-gradient-cyan">Full-Stack Data</span> Solutions
+          </h1>
+
+          <p class="text-base sm:text-lg text-slate-300 leading-relaxed font-body font-light">
+            Versatile AI &amp; Software Systems Engineer with an MCA degree. Skilled in architecting <strong>automated ETL data ingestion pipelines</strong> (cutting overhead by 35%), training verified predictive ML models (&gt;85% accuracy), orchestrating <strong>LLM/RAG workflows</strong> with vector embeddings, and deploying containerized <strong>FastAPI</strong> microservices.
+          </p>
+
+          <!-- Interactive Tab Shortcuts -->
+          <div class="pt-2 flex flex-wrap items-center gap-3">
+            <button class="btn-cyber-primary tab-nav-trigger" data-tab-target="projects" data-cursor="VIEW WORK">
+              <span>EXPLORE CASE STUDIES</span>
+              <span class="material-symbols-outlined text-sm">arrow_forward</span>
+            </button>
+            <button class="btn-cyber-secondary tab-nav-trigger" data-tab-target="resume" data-cursor="VIEW PDF">
+              <span class="material-symbols-outlined text-sm">picture_as_pdf</span>
+              <span>DIRECT PDF RESUME</span>
+            </button>
+            <button id="hero-voice-btn" class="btn-cyber-ghost text-xs text-cyan-300 border-cyan-500/30 hover:bg-cyan-500/10 flex items-center gap-1.5" data-cursor="SPEAK">
+              <span class="material-symbols-outlined text-sm text-cyan-400">volume_up</span>
+              <span>WELCOME BRIEFING</span>
+            </button>
+          </div>
+
+          <!-- Quick Telemetry Chips -->
+          <div class="pt-3 grid grid-cols-2 gap-3 font-mono text-xs">
+            <div class="p-3 rounded-lg bg-[#0E1524]/80 border border-white/10 hover:border-cyan-500/30 transition-colors">
+              <div class="text-[10px] text-slate-500 uppercase tracking-wider">HEAD TRACKING</div>
+              <div class="text-cyan-300 font-semibold mt-0.5">Mouse Kinematics Active</div>
+            </div>
+            <div class="p-3 rounded-lg bg-[#0E1524]/80 border border-white/10 hover:border-cyan-500/30 transition-colors">
+              <div class="text-[10px] text-slate-500 uppercase tracking-wider">LOCATION</div>
+              <div class="text-white font-semibold mt-0.5">Kolkata, WB, India</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Right 3D Interactive Cyber Avatar Viewport -->
+        <div class="lg:col-span-7">
+          <div class="three-viewport-container">
+            <div class="hud-corner hud-tl"></div>
+            <div class="hud-corner hud-tr"></div>
+            <div class="hud-corner hud-bl"></div>
+            <div class="hud-corner hud-br"></div>
+
+            <!-- Minimalist Telemetry Readout Overlay -->
+            <div class="hud-telemetry-panel">
+              <div class="flex items-center gap-2">
+                <span class="w-1.5 h-1.5 rounded-full bg-cyan-400 animate-ping"></span>
+                <span class="font-bold text-white tracking-widest text-[10px]">3D AVATAR TELEMETRY</span>
+              </div>
+              <div class="flex items-center justify-between gap-4 text-slate-400">
+                <span>HEAD POSE:</span>
+                <span class="text-slate-200 font-medium">CURSOR TRACKING</span>
+              </div>
+              <div class="flex items-center justify-between gap-4 text-slate-400">
+                <span>GPU FPS:</span>
+                <span id="hud-fps-val" class="text-emerald-400 font-bold">60 FPS</span>
+              </div>
+              <div class="flex items-center justify-between gap-4 text-slate-400">
+                <span>NEURAL CORE:</span>
+                <span class="text-cyan-300 font-medium">RAG + FASTAPI + ML</span>
+              </div>
+            </div>
+
+            <!-- Avatar Interactive Mode Controls Overlay -->
+            <div class="hud-controls-panel flex flex-wrap gap-1.5 max-w-[94%] justify-end">
+              <button id="avatar-voice-btn" class="hud-btn bg-cyan-500/20 border-cyan-400/50 text-cyan-300 font-bold hover:bg-cyan-500/30 flex items-center gap-1" title="Play Synthesized AI Welcome Voice Briefing">
+                <span class="material-symbols-outlined text-xs">record_voice_over</span>
+                <span>Voice Briefing</span>
+              </button>
+              <button id="avatar-orbit-btn" class="hud-btn" title="Toggle 360 Turntable Inspection Mode">Auto-Orbit 360°</button>
+              <button id="avatar-xray-btn" class="hud-btn" title="Toggle Internal Neural Core Diagnostics">X-Ray Core</button>
+              <button id="avatar-scan-btn" class="hud-btn" title="Trigger Laser Visor Scan">Visor Scan</button>
+              <button id="avatar-holo-toggle" class="hud-btn" title="Toggle Hologram Wireframe">Holo Mode</button>
+              <button id="avatar-color-btn" class="hud-btn" title="Cycle Armor Glow Theme">Color Shift</button>
+            </div>
+
+            <!-- Three.js Avatar Canvas Mount Container -->
+            <div id="three-avatar-viewport" class="three-viewport-canvas" data-cursor="LOOK HERE"></div>
+          </div>
+          <div class="flex justify-between items-center px-2 pt-2 text-[10px] font-mono text-slate-500">
+            <span>MOVE CURSOR TO DIRECT AVATAR EYE & HEAD // DRAG TO REVOLVE</span>
+            <span>THREE.JS KINEMATICS ENGINE</span>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Minimalist Metrics Strip Synchronized with Resume -->
+      <div class="mt-12 grid grid-cols-2 md:grid-cols-4 gap-4 font-mono">
+        <div class="p-4 rounded-xl bg-[#0E1524]/70 border border-white/10 hover:border-cyan-500/30 transition-all shadow-[0_4px_20px_rgba(0,0,0,0.5)]">
+          <div class="text-[10px] text-slate-400 uppercase tracking-wider mb-0.5">Automated ETL</div>
+          <div class="text-2xl font-extrabold text-cyan-300">-35% Overhead</div>
+          <div class="text-[10px] text-slate-500">Multi-source ingestion pipeline</div>
+        </div>
+        <div class="p-4 rounded-xl bg-[#0E1524]/70 border border-white/10 hover:border-emerald-500/30 transition-all shadow-[0_4px_20px_rgba(0,0,0,0.5)]">
+          <div class="text-[10px] text-slate-400 uppercase tracking-wider mb-0.5">ML Baselines</div>
+          <div class="text-2xl font-extrabold text-emerald-400">&gt;85% Accuracy</div>
+          <div class="text-[10px] text-slate-500">Supervised k-fold cross-val</div>
+        </div>
+        <div class="p-4 rounded-xl bg-[#0E1524]/70 border border-white/10 hover:border-cyan-500/30 transition-all shadow-[0_4px_20px_rgba(0,0,0,0.5)]">
+          <div class="text-[10px] text-slate-400 uppercase tracking-wider mb-0.5">RAG Retrieval</div>
+          <div class="text-2xl font-extrabold text-white">&lt;200ms Latency</div>
+          <div class="text-[10px] text-slate-500">FAISS/ChromaDB vector store</div>
+        </div>
+        <div class="p-4 rounded-xl bg-[#0E1524]/70 border border-white/10 hover:border-violet-500/30 transition-all shadow-[0_4px_20px_rgba(0,0,0,0.5)]">
+          <div class="text-[10px] text-slate-400 uppercase tracking-wider mb-0.5">Regression Modeling</div>
+          <div class="text-2xl font-extrabold text-violet-300">R² = 0.88</div>
+          <div class="text-[10px] text-slate-500">10,000+ records valuation</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ======================================================== -->
+    <!-- TAB 2: PROJECTS & CASE STUDIES -->
+    <!-- ======================================================== -->
+    <section id="tab-projects" class="tab-pane py-8 lg:py-12">
+      <div class="mb-8">
+        <div class="inline-flex items-center gap-2 font-mono text-xs text-cyan-400 tracking-widest uppercase mb-1">
+          <span>// TAB 02 : PROOF OF ENGINEERING</span>
+        </div>
+        <h2 class="text-3xl sm:text-4xl font-extrabold font-display text-white tracking-tight">
+          Featured Engineering Case Studies
+        </h2>
+        <p class="text-slate-400 text-sm max-w-2xl mt-1 font-body font-light">
+          Deep technical case studies covering production RAG assistants, multi-camera traffic computer vision, multi-spectral satellite analytics, and regularized predictive modeling.
+        </p>
+      </div>
+
+      <!-- Projects Grid populated by JavaScript -->
+      <div id="projects-grid" class="grid grid-cols-1 md:grid-cols-2 gap-8"></div>
+    </section>
+
+    <!-- ======================================================== -->
+    <!-- TAB 3: TECHNICAL ARSENAL & SKILLS MATRIX -->
+    <!-- ======================================================== -->
+    <section id="tab-skills" class="tab-pane py-8 lg:py-12">
+      <div class="mb-8">
+        <div class="inline-flex items-center gap-2 font-mono text-xs text-cyan-400 tracking-widest uppercase mb-1">
+          <span>// TAB 03 : ARCHITECTURAL MATRIX</span>
+        </div>
+        <h2 class="text-3xl sm:text-4xl font-extrabold font-display text-white tracking-tight">
+          Technical Skills &amp; Competencies
+        </h2>
+        <p class="text-slate-400 text-sm max-w-2xl mt-1 font-body font-light">
+          Six multi-disciplinary domains spanning AI/GenAI architectures, advanced database querying, asynchronous APIs, automated ETL pipelines, cloud DevOps, and systems administration.
+        </p>
+      </div>
+
+      <!-- Skills Grid populated by JavaScript -->
+      <div id="skills-container" class="grid grid-cols-1 md:grid-cols-2 gap-8"></div>
+    </section>
+
+    <!-- ======================================================== -->
+    <!-- TAB 4: CAREER TIMELINE & EDUCATION -->
+    <!-- ======================================================== -->
+    <section id="tab-experience" class="tab-pane py-8 lg:py-12">
+      <div class="mb-8">
+        <div class="inline-flex items-center gap-2 font-mono text-xs text-cyan-400 tracking-widest uppercase mb-1">
+          <span>// TAB 04 : CAREER &amp; ACADEMICS</span>
+        </div>
+        <h2 class="text-3xl sm:text-4xl font-extrabold font-display text-white tracking-tight">
+          Career Proof &amp; Education
+        </h2>
+      </div>
+
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-10">
+        <!-- Professional Timeline -->
+        <div class="lg:col-span-7">
+          <h3 class="text-xl font-bold font-display text-white mb-6 flex items-center gap-2">
+            <span class="material-symbols-outlined text-cyan-400">work</span>
+            <span>Professional Experience</span>
+          </h3>
+          <div id="experience-timeline"></div>
+        </div>
+
+        <!-- Education & Certifications -->
+        <div class="lg:col-span-5 space-y-8">
+          <div>
+            <h3 class="text-xl font-bold font-display text-white mb-4 flex items-center gap-2">
+              <span class="material-symbols-outlined text-cyan-400">school</span>
+              <span>Academic Degrees</span>
+            </h3>
+            <div id="education-container" class="space-y-4"></div>
+          </div>
+
+          <div>
+            <h3 class="text-xl font-bold font-display text-white mb-4 flex items-center gap-2">
+              <span class="material-symbols-outlined text-emerald-400">emoji_events</span>
+              <span>Certifications &amp; Achievements</span>
+            </h3>
+            <div class="space-y-3 font-body">
+              <div class="p-4 rounded-lg bg-[#0E1524]/80 border border-white/10 hover:border-cyan-500/30 transition-colors">
+                <div class="flex items-center gap-2 text-white font-mono text-xs font-bold mb-1">
+                  <span class="w-1.5 h-1.5 rounded-full bg-cyan-400"></span>
+                  <span>NPTEL Certification: Data Analytics Using Python</span>
+                </div>
+                <p class="text-xs text-slate-300">
+                  Validated expertise in Pandas, NumPy, and statistical machine learning algorithms.
+                </p>
+              </div>
+
+              <div class="p-4 rounded-lg bg-[#0E1524]/80 border border-white/10 hover:border-cyan-500/30 transition-colors">
+                <div class="flex items-center gap-2 text-white font-mono text-xs font-bold mb-1">
+                  <span class="w-1.5 h-1.5 rounded-full bg-emerald-400"></span>
+                  <span>Smart India Hackathon (SIH) Participant</span>
+                </div>
+                <p class="text-xs text-slate-300">
+                  Developed real-time data analytical solutions within an intensive 36-hour sprint.
+                </p>
+              </div>
+
+              <div class="p-4 rounded-lg bg-[#0E1524]/80 border border-white/10 hover:border-cyan-500/30 transition-colors">
+                <div class="flex items-center gap-2 text-white font-mono text-xs font-bold mb-1">
+                  <span class="w-1.5 h-1.5 rounded-full bg-violet-400"></span>
+                  <span>Leadership: Cultural Club Organizing Committee</span>
+                </div>
+                <p class="text-xs text-slate-300">
+                  Managed event logistics, operational budgets, and technical resources.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ======================================================== -->
+    <!-- TAB 5: DIRECT PDF RESUME VIEWER (WITH ATS WEB FALLBACK) -->
+    <!-- ======================================================== -->
+    <section id="tab-resume" class="tab-pane py-8 lg:py-12">
+      <div class="cyber-card p-6 sm:p-10 max-w-5xl mx-auto relative">
+        <div class="hud-corner hud-tl"></div>
+        <div class="hud-corner hud-tr"></div>
+        <div class="hud-corner hud-bl"></div>
+        <div class="hud-corner hud-br"></div>
+
+        <!-- Top Header & Quick Action Buttons -->
+        <div class="flex flex-wrap items-center justify-between gap-4 pb-6 border-b border-white/10 mb-6">
+          <div>
+            <span class="text-xs font-mono text-emerald-400 flex items-center gap-1.5 mb-1">
+              <span class="status-beacon"></span>
+              OFFICIAL 1-PAGE ATS RESUME (PDF DOCUMENT)
+            </span>
+            <h2 class="text-3xl font-extrabold font-display text-white">NILADRI PAL</h2>
+            <div class="text-xs font-mono text-cyan-400 mt-0.5">
+              AI/ML ENGINEER &bull; FULL-STACK DATA SOLUTIONS &bull; AUTOMATION &amp; CLOUD SYSTEMS
+            </div>
+          </div>
+
+          <!-- Controls: Direct Actions -->
+          <div class="flex flex-wrap items-center gap-2.5">
+            <a href="Niladri_Pal_Resume.pdf" target="_blank" rel="noopener noreferrer" class="btn-cyber-primary text-xs" data-cursor="OPEN PDF">
+              <span class="material-symbols-outlined text-sm">open_in_new</span>
+              <span>OPEN FULLSCREEN PDF</span>
+            </a>
+            <a href="Niladri_Pal_Resume.pdf" download="Niladri_Pal_Resume.pdf" class="btn-cyber-secondary text-xs" data-cursor="DOWNLOAD">
+              <span class="material-symbols-outlined text-sm">download</span>
+              <span>DOWNLOAD PDF</span>
+            </a>
+            <button id="print-resume-page-btn" class="btn-cyber-ghost text-xs">
+              <span class="material-symbols-outlined text-sm">print</span>
+              <span>PRINT</span>
+            </button>
+          </div>
+        </div>
+
+        <!-- Direct PDF / Web View Mode Switcher -->
+        <div class="flex items-center justify-between gap-3 mb-6 pb-4 border-b border-white/5 font-mono text-xs">
+          <div class="flex items-center gap-2 p-1 rounded-lg bg-[#0B101D] border border-white/10">
+            <button id="btn-show-pdf-view" class="px-3 py-1.5 rounded text-xs font-semibold bg-white text-slate-950 shadow transition-all">
+              <span class="flex items-center gap-1.5">
+                <span class="material-symbols-outlined text-sm">picture_as_pdf</span>
+                DIRECT PDF VIEWER
+              </span>
+            </button>
+            <button id="btn-show-web-view" class="px-3 py-1.5 rounded text-xs font-medium text-slate-400 hover:text-white transition-all">
+              <span class="flex items-center gap-1.5">
+                <span class="material-symbols-outlined text-sm">code</span>
+                WEB DOSSIER VIEW
+              </span>
+            </button>
+          </div>
+
+          <div class="text-[11px] text-slate-500 hidden sm:block">
+            <span>ORIGINAL 1-PAGE DOCUMENT FORMAT // ATS VERIFIED</span>
+          </div>
+        </div>
+
+        <!-- 1. Direct Embedded PDF Viewer Container -->
+        <div id="pdf-viewer-section" class="w-full">
+          <div class="w-full h-[850px] rounded-xl overflow-hidden border border-white/15 bg-white shadow-2xl relative">
+            <iframe 
+              id="pdf-embed-frame"
+              src="Niladri_Pal_Resume.pdf#toolbar=1&navpanes=0&scrollbar=1" 
+              class="w-full h-full border-0" 
+              title="Niladri Pal PDF Resume">
+            </iframe>
+          </div>
+          
+          <div class="flex flex-wrap items-center justify-between gap-2 mt-4 text-[11px] font-mono text-slate-500">
+            <span>EMBEDDED HIGH-FIDELITY PDF RENDER // LETTER 1-PAGE ATS FORMAT</span>
+            <a href="Niladri_Pal_Resume.pdf" target="_blank" class="text-cyan-400 hover:underline flex items-center gap-1">
+              <span>View full screen in standalone viewer</span>
+              <span class="material-symbols-outlined text-xs">launch</span>
+            </a>
+          </div>
+        </div>
+
+        <!-- 2. Web Dossier View Container (Toggleable) -->
+        <div id="web-viewer-section" class="hidden space-y-6 text-sm text-slate-300 font-body">
+          <div class="p-3.5 rounded bg-slate-900/60 border border-white/10 font-mono text-xs text-slate-300 flex flex-wrap justify-between gap-2">
+            <span>Kolkata, WB, India</span>
+            <span>+91 9749708917</span>
+            <span>niladri6202@gmail.com</span>
+            <a href="https://github.com/niladripalmca24-cyber" target="_blank" rel="noopener noreferrer" class="text-cyan-400 hover:underline">github.com/niladripalmca24-cyber</a>
+          </div>
+
+          <section>
+            <h4 class="text-xs font-mono text-cyan-400 uppercase tracking-wider font-bold mb-1.5">PROFESSIONAL SUMMARY</h4>
+            <p class="text-xs leading-relaxed text-slate-300 bg-slate-900/30 p-3.5 rounded border border-white/10">
+              Versatile AI &amp; Software Systems Engineer with an MCA degree, offering multi-disciplinary expertise across Data Analytics, Data Science, Machine Learning Engineering, AI Automation, and Full-Stack Web Development. Skilled in architecting automated ETL data ingestion pipelines (cutting overhead by 35%), training verified ML models (&gt;85% accuracy), orchestrating LLM/RAG workflows with high-dimensional vector embeddings, developing containerized REST APIs (FastAPI), and deploying production web systems across PaaS and cloud platforms. Proven aptitude in building scalable, production-ready software solutions.
+            </p>
+          </section>
+
+          <section>
+            <h4 class="text-xs font-mono text-cyan-400 uppercase tracking-wider font-bold mb-1.5">TECHNICAL SKILLS &amp; COMPETENCIES</h4>
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-2.5 text-xs font-mono">
+              <div class="p-2.5 rounded bg-slate-900/50 border border-white/10">
+                <span class="text-white font-bold block mb-0.5">Languages &amp; Scripting:</span>
+                Python (Advanced), SQL (PostgreSQL, MySQL, SQLite), JavaScript (ES6+), Bash/Shell Scripting, HTML5, CSS3
+              </div>
+              <div class="p-2.5 rounded bg-slate-900/50 border border-white/10">
+                <span class="text-white font-bold block mb-0.5">AI, GenAI &amp; Automation:</span>
+                LLM Orchestration (LangChain, LlamaIndex), RAG Architecture, Vector DBs (FAISS, ChromaDB), Prompt Engineering, PyTorch, Scikit-Learn, NLP, Computer Vision
+              </div>
+              <div class="p-2.5 rounded bg-slate-900/50 border border-white/10">
+                <span class="text-white font-bold block mb-0.5">Web &amp; Backend Engineering:</span>
+                FastAPI, Flask, RESTful API Design, Asynchronous Execution (asyncio), Microservices Architecture, JSON Streaming, Postman API Testing
+              </div>
+              <div class="p-2.5 rounded bg-slate-900/50 border border-white/10">
+                <span class="text-white font-bold block mb-0.5">Data Analytics &amp; Databases:</span>
+                Pandas, NumPy, Advanced SQL (Window Functions, CTEs, Joins, Indexing, Query Tuning), Automated ETL Pipelines, Outlier Imputation, Model Evaluation, EDA
+              </div>
+              <div class="p-2.5 rounded bg-slate-900/50 border border-white/10">
+                <span class="text-white font-bold block mb-0.5">Cloud, DevOps &amp; Deployment:</span>
+                Docker (Containerization), PaaS Hosting (Render, Vercel, Netlify), Google Cloud Run, Git/GitHub (CI/CD Workflows)
+              </div>
+              <div class="p-2.5 rounded bg-slate-900/50 border border-white/10">
+                <span class="text-white font-bold block mb-0.5">Systems &amp; Productivity:</span>
+                Linux (Kali/Ubuntu System Admin), Bash Shell Scripting, Microsoft Excel (Advanced Pivot Tables, Lookups, Data Modeling, AI Excel Tools &amp; Copilot Automation)
+              </div>
+            </div>
+          </section>
+
+          <section>
+            <h4 class="text-xs font-mono text-cyan-400 uppercase tracking-wider font-bold mb-1.5">PROFESSIONAL EXPERIENCE</h4>
+            <div class="space-y-3">
+              <div class="p-3.5 rounded bg-slate-900/40 border border-white/10">
+                <div class="flex justify-between font-mono text-xs text-slate-300 font-bold mb-1">
+                  <span>Euphoria GenX — AI/ML &amp; Data Trainee</span>
+                  <span class="text-cyan-400">Jan 2026 – Jun 2026 | Kolkata, India</span>
+                </div>
+                <ul class="list-disc list-inside text-xs text-slate-300 space-y-1 mt-1">
+                  <li><strong>Automated Data Pipelines:</strong> Architected automated Python ETL pipelines for multi-source data ingestion, eliminating manual intervention and slashing preprocessing overhead by 35%.</li>
+                  <li><strong>ML Baselines &amp; Validation:</strong> Developed and tuned supervised predictive models using Scikit-Learn; maintained accuracy consistently above 85% via k-fold cross-validation and hyperparameter optimization.</li>
+                  <li><strong>Exploratory Data Analysis &amp; APIs:</strong> Conducted statistical validation and anomaly detection on high-dimensional datasets; packaged trained inference routines into modular REST API endpoints.</li>
+                </ul>
+              </div>
+
+              <div class="p-3.5 rounded bg-slate-900/40 border border-white/10">
+                <div class="flex justify-between font-mono text-xs text-slate-300 font-bold mb-1">
+                  <span>Ardent Computech Pvt. Ltd. — Cybersecurity Intern</span>
+                  <span class="text-cyan-400">Mar 2025 – Jul 2025 | Kolkata, India</span>
+                </div>
+                <ul class="list-disc list-inside text-xs text-slate-300 space-y-1 mt-1">
+                  <li><strong>Log Telemetry Analytics:</strong> Analyzed structured Linux system log streams (syslog, auth.log) and high-throughput network telemetry to detect operational anomalies, performance bottlenecks, and security events.</li>
+                  <li><strong>Compliance Automation:</strong> Authored custom Python automation utilities to extract, structure, and sanitize endpoint telemetry for automated audit reporting; hardened Linux configurations.</li>
+                </ul>
+              </div>
+            </div>
+          </section>
+
+          <section>
+            <h4 class="text-xs font-mono text-cyan-400 uppercase tracking-wider font-bold mb-1.5">EDUCATION</h4>
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-2.5 text-xs">
+              <div class="p-2.5 rounded bg-slate-900/40 border border-white/10">
+                <div class="font-bold text-white">Master of Computer Applications (MCA)</div>
+                <div class="text-slate-400">Future Institute of Engineering and Management (2024 – 2026)</div>
+              </div>
+              <div class="p-2.5 rounded bg-slate-900/40 border border-white/10">
+                <div class="font-bold text-white">Bachelor of Computer Applications (BCA)</div>
+                <div class="text-slate-400">Raiganj University (2019 – 2022)</div>
+              </div>
+            </div>
+          </section>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ======================================================== -->
+    <!-- TAB 6: RECRUITER MISSION CONTROL & CONTACT -->
+    <!-- ======================================================== -->
+    <section id="tab-contact" class="tab-pane py-8 lg:py-12">
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-10">
+        
+        <div class="lg:col-span-5 space-y-6">
+          <div class="inline-flex items-center gap-2 font-mono text-xs text-cyan-400 uppercase tracking-widest">
+            <span>// MISSION CONTROL // INITIALIZE DIALOGUE</span>
+          </div>
+
+          <h2 class="text-3xl sm:text-4xl font-extrabold font-display text-white tracking-tight">
+            Let's Build Something High-Impact
+          </h2>
+
+          <p class="text-slate-300 text-sm sm:text-base leading-relaxed font-light">
+            I am currently open for full-time engineering roles, AI automation &amp; ML system initiatives, and full-stack software architecture collaborations.
+          </p>
+
+          <div class="space-y-3 pt-2 font-mono text-xs">
+            <!-- Direct Inbox Card with 1-Click Launchers -->
+            <div class="p-4 rounded-lg bg-[#0E1524]/80 border border-white/10 hover:border-cyan-500/30 transition-colors">
+              <div class="flex items-center justify-between gap-2 mb-2">
+                <div class="text-[10px] text-slate-500 uppercase tracking-wider font-semibold">DIRECT INBOX (VERIFIED)</div>
+                <span class="inline-flex items-center gap-1.5 text-[10px] text-emerald-400 font-mono">
+                  <span class="status-beacon"></span> ACTIVE
+                </span>
+              </div>
+              <div class="text-white font-bold select-all text-sm mb-3">niladri6202@gmail.com</div>
+              <div class="flex flex-wrap items-center gap-2">
+                <a href="mailto:niladri6202@gmail.com?subject=Engineering%20Inquiry%20-%20Niladri%20Pal" class="btn-cyber-primary text-xs py-1.5 px-3" data-cursor="MAIL">
+                  <span class="material-symbols-outlined text-xs">mail</span>
+                  <span>Send Email</span>
+                </a>
+                <a href="https://mail.google.com/mail/?view=cm&fs=1&to=niladri6202@gmail.com&su=Engineering%20Inquiry%20-%20Niladri%20Pal" target="_blank" rel="noopener noreferrer" class="btn-cyber-secondary text-xs py-1.5 px-3" data-cursor="GMAIL">
+                  <span class="material-symbols-outlined text-xs text-cyan-400">open_in_new</span>
+                  <span>Gmail ↗</span>
+                </a>
+                <button type="button" id="copy-email-btn" class="btn-cyber-ghost text-xs py-1.5 px-2.5">
+                  <span class="material-symbols-outlined text-xs">content_copy</span>
+                  <span>Copy</span>
+                </button>
+              </div>
+            </div>
+
+            <!-- Phone / Mobile & WhatsApp -->
+            <div class="p-4 rounded-lg bg-[#0E1524]/80 border border-white/10 flex flex-wrap items-center justify-between gap-3 hover:border-cyan-500/30 transition-colors">
+              <div>
+                <div class="text-[10px] text-slate-500 uppercase tracking-wider mb-0.5">PHONE / MOBILE</div>
+                <div class="text-white font-bold">+91 9749708917</div>
+              </div>
+              <div class="flex items-center gap-2">
+                <a href="tel:+919749708917" class="btn-cyber-ghost text-xs py-1.5 px-2.5" title="Call directly">
+                  <span class="material-symbols-outlined text-xs">call</span>
+                  <span>Call</span>
+                </a>
+                <a href="https://wa.me/919749708917?text=Hi%20Niladri,%20I%20reviewed%20your%20engineering%20portfolio..." target="_blank" rel="noopener noreferrer" class="btn-cyber-ghost text-xs py-1.5 px-2.5 text-emerald-400 border-emerald-500/30 hover:bg-emerald-500/10" title="Chat on WhatsApp">
+                  <span class="material-symbols-outlined text-xs">chat</span>
+                  <span>WhatsApp ↗</span>
+                </a>
+              </div>
+            </div>
+
+            <!-- GitHub Source Repository -->
+            <div class="p-4 rounded-lg bg-[#0E1524]/80 border border-white/10 flex flex-wrap items-center justify-between gap-3 hover:border-cyan-500/30 transition-colors">
+              <div>
+                <div class="text-[10px] text-slate-500 uppercase tracking-wider mb-0.5">SOURCE CODE REPOSITORY</div>
+                <div class="text-white font-bold">github.com/niladripalmca24-cyber</div>
+              </div>
+              <a href="https://github.com/niladripalmca24-cyber" target="_blank" rel="noopener noreferrer" class="btn-cyber-ghost text-xs py-1.5 px-3">
+                <span class="material-symbols-outlined text-xs">open_in_new</span>
+                <span>Visit GitHub ↗</span>
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Contact Form Console -->
+        <div class="lg:col-span-7">
+          <div class="cyber-card p-6 sm:p-8 relative">
+            <div class="hud-corner hud-tl"></div>
+            <div class="hud-corner hud-tr"></div>
+            <div class="hud-corner hud-bl"></div>
+            <div class="hud-corner hud-br"></div>
+
+            <div class="flex items-center justify-between gap-2 mb-1">
+              <h3 class="text-lg font-bold font-display text-white">Direct Message Transmission</h3>
+              <span class="text-[10px] font-mono text-cyan-400 px-2 py-0.5 rounded bg-cyan-950/40 border border-cyan-500/30">DISPATCH CONSOLE</span>
+            </div>
+            <p class="text-xs font-mono text-slate-400 mb-6">Send an instant inquiry or interview request directly to Niladri Pal's email mailbox.</p>
+
+            <form id="recruiter-contact-form" class="space-y-4 font-mono text-xs">
+              <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                <div>
+                  <label for="contact-name" class="block text-[11px] text-slate-400 mb-1">YOUR NAME *</label>
+                  <input type="text" id="contact-name" name="name" required placeholder="e.g. Alex Rivera" class="w-full px-3.5 py-2.5 rounded bg-[#0B101D] border border-white/10 text-white focus:outline-none focus:border-cyan-400 focus:ring-1 focus:ring-cyan-400 transition-all text-xs" />
+                </div>
+                <div>
+                  <label for="contact-email" class="block text-[11px] text-slate-400 mb-1">WORK EMAIL *</label>
+                  <input type="email" id="contact-email" name="email" required placeholder="alex@company.com" class="w-full px-3.5 py-2.5 rounded bg-[#0B101D] border border-white/10 text-white focus:outline-none focus:border-cyan-400 focus:ring-1 focus:ring-cyan-400 transition-all text-xs" />
+                </div>
+              </div>
+
+              <div>
+                <label for="contact-engagement" class="block text-[11px] text-slate-400 mb-1">ENGAGEMENT TYPE</label>
+                <select id="contact-engagement" name="engagement" class="w-full px-3.5 py-2.5 rounded bg-[#0B101D] border border-white/10 text-slate-300 focus:outline-none focus:border-cyan-400 focus:ring-1 focus:ring-cyan-400 transition-all text-xs">
+                  <option value="Full-Time AI / ML Engineering Role">Full-Time AI / ML Engineering Role</option>
+                  <option value="Data Science / Predictive Modeling Contract">Data Science / Predictive Modeling Contract</option>
+                  <option value="FastAPI / RAG Backend Architecture">FastAPI / RAG Backend Architecture</option>
+                  <option value="Full-Stack Systems Partnership / Other">Full-Stack Systems Partnership / Other</option>
+                </select>
+              </div>
+
+              <div>
+                <label for="contact-message" class="block text-[11px] text-slate-400 mb-1">MESSAGE / PROJECT SPECIFICATIONS *</label>
+                <textarea id="contact-message" name="message" rows="4" required placeholder="Describe your team, timeline, or engineering objectives..." class="w-full px-3.5 py-2.5 rounded bg-[#0B101D] border border-white/10 text-white focus:outline-none focus:border-cyan-400 focus:ring-1 focus:ring-cyan-400 transition-all text-xs"></textarea>
+              </div>
+
+              <div id="contact-feedback-msg" class="hidden"></div>
+
+              <div class="pt-2 flex flex-col sm:flex-row items-center gap-3">
+                <button type="submit" id="contact-submit-btn" class="btn-cyber-primary w-full sm:flex-1 justify-center py-3">
+                  <span class="material-symbols-outlined text-sm">send</span>
+                  <span>SEND TO NILADRI6202@GMAIL.COM</span>
+                </button>
+                <a id="direct-gmail-quick-btn" href="https://mail.google.com/mail/?view=cm&fs=1&to=niladri6202@gmail.com&su=Engineering%20Inquiry%20from%20Portfolio" target="_blank" rel="noopener noreferrer" class="btn-cyber-secondary w-full sm:w-auto text-xs py-3 justify-center" title="Open Gmail Web Directly">
+                  <span class="material-symbols-outlined text-sm text-cyan-400">mail</span>
+                  <span>GMAIL ↗</span>
+                </a>
+              </div>
+            </form>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+  </main>
+
+  <!-- Interactive Case Study Modal -->
+  <div id="case-study-modal" class="modal-overlay">
+    <div class="modal-box">
+      <div class="hud-corner hud-tl"></div>
+      <div class="hud-corner hud-tr"></div>
+      <div class="hud-corner hud-bl"></div>
+      <div class="hud-corner hud-br"></div>
+
+      <button id="close-modal-btn" class="absolute top-6 right-6 p-2 rounded-lg bg-[#0E1524] border border-white/10 text-slate-300 hover:text-white focus:outline-none z-20" aria-label="Close Modal">
+        <span class="material-symbols-outlined text-xl">close</span>
+      </button>
+
+      <div id="modal-content-container"></div>
+    </div>
+  </div>
+
+  <!-- Footer Telemetry -->
+  <footer class="border-t border-white/10 bg-[#07090E] py-6 px-4 sm:px-8 font-mono text-[11px] text-slate-500 mt-12">
+    <div class="max-w-7xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-3">
+      <div class="flex items-center gap-2">
+        <span class="w-2 h-2 rounded-full bg-emerald-400"></span>
+        <span class="text-slate-300 font-bold">NILADRI PAL</span>
+        <span>// AI/ML ENGINEER &amp; 3D INTERACTIVE AVATAR CORE</span>
+      </div>
+      <div>
+        <span>BUILD VER: 2026.4 // PRISMATIC TITANIUM &amp; CYBER AZURE</span>
+      </div>
+      <div>
+        <a href="https://github.com/niladripalmca24-cyber" target="_blank" rel="noopener noreferrer" class="hover:text-cyan-400 transition-colors">
+          GITHUB: niladripalmca24-cyber ↗
+        </a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Application Logic & Three.js Scenes -->
+  <script src="projects-data.js?v=2026.6"></script>
+  <script src="three-scene.js?v=2026.6"></script>
+  <script src="app.js?v=2026.6"></script>
+</body>
+</html>
