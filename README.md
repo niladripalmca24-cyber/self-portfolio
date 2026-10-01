@@ -3,6 +3,8 @@
 
 An industry-grade, immersive 3D interactive engineering portfolio and technical dossier showcasing machine learning architectures, automated ETL pipelines, LLM/RAG workflows, and full-stack software systems.
 
+[![Deploy to Render](https://render.com/images/deploy-to-render-button.svg)](https://render.com/deploy?repo=https://github.com/niladripalmca24-cyber/self-portfolio)
+
 ---
 
 ## ⚡ Core Architecture & Highlights
