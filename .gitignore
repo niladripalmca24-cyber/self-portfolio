@@ -12,4 +12,6 @@ desktop.ini
 # Log Files & Scratch
 *.log
 *.tmp
+*.zip
 scratch/
+
