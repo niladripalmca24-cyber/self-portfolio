@@ -3,7 +3,11 @@
 
 An industry-grade, immersive 3D interactive engineering portfolio and technical dossier showcasing machine learning architectures, automated ETL pipelines, LLM/RAG workflows, and full-stack software systems.
 
+[![Live Demo](https://img.shields.io/badge/Live_Demo-niladri--pal--portfolio.onrender.com-00E5FF?style=for-the-badge&logo=render&logoColor=white)](https://niladri-pal-portfolio.onrender.com)
+[![GitHub](https://img.shields.io/badge/GitHub-Repository-181717?style=for-the-badge&logo=github&logoColor=white)](https://github.com/niladripalmca24-cyber/self-portfolio)
 [![Deploy to Render](https://render.com/images/deploy-to-render-button.svg)](https://render.com/deploy?repo=https://github.com/niladripalmca24-cyber/self-portfolio)
+
+> 🔗 **Live Website**: [https://niladri-pal-portfolio.onrender.com](https://niladri-pal-portfolio.onrender.com)
 
 ---
 
@@ -80,7 +84,8 @@ npx serve .
 
 ## 📬 Contact & Links
 
-* **Engineering Dossier**: [Niladri Pal Portfolio](https://github.com/niladripalmca24-cyber/self-portfolio)
+* **Live Deployment**: [https://niladri-pal-portfolio.onrender.com](https://niladri-pal-portfolio.onrender.com)
+* **GitHub Repository**: [niladripalmca24-cyber/self-portfolio](https://github.com/niladripalmca24-cyber/self-portfolio)
 * **Direct Mailbox**: [niladri6202@gmail.com](mailto:niladri6202@gmail.com)
 * **Phone / WhatsApp**: [+91 9749708917](https://wa.me/919749708917)
 * **GitHub Profile**: [@niladripalmca24-cyber](https://github.com/niladripalmca24-cyber)
